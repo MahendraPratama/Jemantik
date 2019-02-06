@@ -36,9 +36,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <!--<activity-->
-            <!--android:name=".MapsActivity"-->
-            <!--android:label="@string/title_activity_maps" />-->
+        <!-- <activity -->
+        <!-- android:name=".MapsActivity" -->
+        <!-- android:label="@string/title_activity_maps" /> -->
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,13 +47,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".MenuAdminActivity" />
-        <activity   android:name=".TambahKaderActivity"
-                    android:parentActivityName=".MenuAdminActivity"/>
+        <activity
+            android:name=".TambahKaderActivity"
+            android:parentActivityName=".MenuAdminActivity" />
         <activity android:name=".MenuUserActivity" />
         <activity android:name=".TambahDataKKActivity" />
         <activity android:name=".CariKKInputActivity" />
-        <activity   android:name=".DataKaderActivity"
-                    android:parentActivityName=".MenuAdminActivity"/>
+        <activity
+            android:name=".DataKaderActivity"
+            android:parentActivityName=".MenuAdminActivity" />
+        <activity android:name=".AddBeritaActivity"></activity>
     </application>
 
 </manifest>
