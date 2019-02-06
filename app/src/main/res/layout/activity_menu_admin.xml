@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jentiknyamuk.mpdev.jentiknyamuk.MenuAdminActivity"
+    android:background="@drawable/bg_user">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/tab_pager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/main_tabs"
+        android:layout_alignParentLeft="true">
+
+    </android.support.v4.view.ViewPager>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/main_tabs"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="50dp"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabTextColor="#fff"
+        app:tabSelectedTextColor="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        >
+    </android.support.design.widget.TabLayout>
+
+
+    <!--<ImageView-->
+        <!--android:id="@+id/logo_pageAdm"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:background="@mipmap/logo_jemantik_hitam"-->
+        <!--android:backgroundTint="@color/colorPrimaryDark"-->
+        <!--/>-->
+
+    <!--<TextView-->
+        <!--style="@style/EditText_input"-->
+        <!--android:layout_below="@id/logo_pageAdm"-->
+        <!--android:text="Aplikasi Pemantauan Jentik Daerah Semarang Barat"-->
+        <!--android:textAlignment="center"-->
+        <!--android:textColor="@color/colorPrimaryDark"-->
+        <!--android:textStyle="bold"/>-->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/llAdmTop"-->
+        <!--android:layout_above="@id/llAdmbtm"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--&gt;-->
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/btn_register_user"-->
+            <!--style="@style/button_menu_admin"-->
+            <!--android:src="@drawable/ic_tmbh_petugas_jentik"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:layout_weight="1"-->
+            <!--/>-->
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/btn_data_petugas"-->
+            <!--style="@style/button_menu_admin"-->
+            <!--android:src="@drawable/ic_data_petugas_jentik"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:layout_weight="1"/>-->
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/btn_lihat_data_kk"-->
+            <!--style="@style/button_menu_admin"-->
+            <!--android:src="@drawable/ic_usr_tmbh_dt_kk"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:layout_weight="1"/>-->
+    <!--</LinearLayout>-->
+
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/llAdmbtm"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:weightSum="2"-->
+        <!--&gt;-->
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/btn_data_hasil_pantau"-->
+            <!--style="@style/button_menu_admin"-->
+            <!--android:src="@drawable/ic_hsl_pemantauan_jentik"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:layout_weight="1"-->
+            <!--/>-->
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/btn_logout"-->
+            <!--style="@style/button_menu_admin"-->
+            <!--android:src="@drawable/ic_usr_logout"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:layout_weight="1"-->
+            <!--/>-->
+    <!--</LinearLayout>-->
+
+</RelativeLayout>

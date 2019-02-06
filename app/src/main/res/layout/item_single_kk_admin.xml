@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="#d4c8edc6"
+    android:weightSum="3"
+    >
+
+    <TextView
+        android:id="@+id/list_namaKK"
+        android:layout_width="30pt"
+        android:maxWidth="30pt"
+        android:layout_height="wrap_content"
+        android:text="Sumarno "
+        android:layout_gravity="center_vertical"
+        android:layout_weight="3"
+        android:paddingLeft="5dp"
+        android:layout_margin="5dp"
+        android:maxLines="1"
+        android:fontFamily="casual"
+        android:textColor="#000"
+        android:layout_marginLeft="10dp"
+        />
+    <Button
+        android:id="@+id/btnEdtKK"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="edit"
+        android:layout_margin="5dp"
+        android:layout_gravity="center_vertical"
+        android:background="#0221bc"
+        android:fontFamily="casual"
+        android:textColor="@color/white"/>
+    <Button
+        android:id="@+id/btnDelKK"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="delete"
+        android:layout_margin="5dp"
+        android:layout_gravity="center_vertical"
+        android:background="#bc0209"
+        android:fontFamily="casual"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

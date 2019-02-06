@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jentiknyamuk.mpdev.jentiknyamuk.InputHasilPantauActivity"
+    >
+
+    <RelativeLayout
+        android:id="@+id/header_input_data_pantau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryDark">
+        <TextView
+            android:id="@+id/textHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="INPUT DATA HASIL PEMANTAUAN"
+            android:textAlignment="center"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            />
+        <EditText
+            android:layout_below="@id/textHeader"
+            android:id="@+id/idp_noKK"
+            android:textColor="#999"
+            android:background="#da032803"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_height="wrap_content"
+            android:text="31231231231231231"
+            android:paddingLeft="10dp"
+            android:editable="false"
+            android:fontFamily="casual"
+            android:layout_marginBottom="2dp"/>
+        <EditText
+            android:layout_below="@id/idp_noKK"
+            android:id="@+id/idp_nmKK"
+            android:editable="false"
+            android:textColor="#999"
+            android:background="#da032803"
+            android:paddingLeft="10dp"
+            android:fontFamily="casual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="Suganda"
+            android:layout_marginBottom="2dp"/>
+        <EditText
+            android:layout_below="@id/idp_nmKK"
+            android:id="@+id/idp_tglPantau"
+            android:textColor="#ffffff"
+            android:editable="false"
+            android:background="#c6107c10"
+            android:paddingLeft="10dp"
+            android:fontFamily="casual"
+            android:layout_alignParentLeft="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="Masukkan tanggal"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView_inpDtKK"
+        android:layout_below="@id/header_input_data_pantau"
+        android:layout_above="@id/btn_simpan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/sts_bak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bak Mandi"
+                style="@style/text_IDP"
+                android:clickable="true"
+                android:textSize="16dp"
+                android:textColor="#000"
+                android:textStyle="bold"/>
+            <RadioGroup
+                android:id="@+id/idp_bakmandi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:background="#b8dc880a"
+                android:padding="15dp"
+                >
+                <RadioButton
+                    android:id="@+id/y_bakmandi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="(+) ADA JENTIK" />
+
+                <RadioButton
+                    android:id="@+id/t_bakmandi"
+                    android:layout_weight="2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(-) TIDAK ADA JENTIK" />
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/sts_tempayan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tempayan"
+                android:textColor="@color/sts_kontainer_active"
+                android:clickable="true"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                style="@style/text_IDP"
+                />
+            <RadioGroup
+                android:id="@+id/idp_tempayan"
+                android:clickable="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:background="#b8dc880a"
+                android:padding="15dp"
+                >
+                <RadioButton
+                    android:id="@+id/y_tempayan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="(+) ADA JENTIK" />
+
+                <RadioButton
+                    android:id="@+id/t_tempayan"
+                    android:layout_weight="2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(-) TIDAK ADA JENTIK" />
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/sts_kolam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kolam"
+                android:clickable="true"
+                android:textColor="#000"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                style="@style/text_IDP"
+                />
+            <RadioGroup
+                android:id="@+id/idp_kolam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:background="#b8dc880a"
+                android:padding="15dp"
+                >
+                <RadioButton
+                    android:id="@+id/y_kolam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="(+) ADA JENTIK" />
+
+                <RadioButton
+                    android:id="@+id/t_kolam"
+                    android:layout_weight="2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(-) TIDAK ADA JENTIK" />
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/sts_kaleng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kaleng Bekas"
+                android:textColor="#000"
+                android:clickable="true"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                style="@style/text_IDP"
+                />
+            <RadioGroup
+                android:id="@+id/idp_kaleng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:background="#b8dc880a"
+                android:padding="15dp"
+                >
+                <RadioButton
+                    android:id="@+id/y_kaleng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="(+) ADA JENTIK" />
+
+                <RadioButton
+                    android:id="@+id/t_kaleng"
+                    android:layout_weight="2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(-) TIDAK ADA JENTIK" />
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/sts_lain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lain - lain"
+                android:textColor="#000"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:clickable="true"
+                style="@style/text_IDP"
+                />
+            <RadioGroup
+                android:id="@+id/idp_lain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:background="#b8dc880a"
+                android:padding="15dp"
+                >
+                <RadioButton
+                    android:id="@+id/y_lain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="(+) ADA JENTIK" />
+
+                <RadioButton
+                    android:id="@+id/t_lain"
+                    android:layout_weight="2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(-) TIDAK ADA JENTIK" />
+            </RadioGroup>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_simpan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        android:text="SIMPAN"
+        android:fontFamily="casual"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

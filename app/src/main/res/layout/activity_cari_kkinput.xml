@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jentiknyamuk.mpdev.jentiknyamuk.CariKKInputActivity">
+
+    <RelativeLayout
+        android:id="@+id/header_cari_kk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentTop="true"
+        >
+
+        <EditText
+            android:id="@+id/cari_dari_kelurahan"
+            style="@style/EditText_Tambah_KK"
+            android:background="#b9103903"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:hint="Cari Kelurahan.."
+            android:textColorHint="#999"
+            android:paddingLeft="15dp"
+            android:layout_marginRight="60dp"/>
+        <LinearLayout
+            android:id="@+id/linear_rtrw"
+            android:layout_below="@id/cari_dari_kelurahan"
+            style="@style/EditText_Tambah_KK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="60dp"
+            android:weightSum="2">
+            <EditText
+                android:id="@+id/cari_dari_rt"
+                android:background="#b9103903"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:hint="RT"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:fontFamily="casual"
+                android:textColorHint="#999"
+                android:paddingLeft="15dp"/>
+            <EditText
+                android:id="@+id/cari_dari_rw"
+                android:layout_marginLeft="5dp"
+                android:background="#b9103903"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="RW"
+                android:fontFamily="casual"
+                android:layout_weight="2"
+                android:textColorHint="#999"
+                android:paddingLeft="15dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_go_search"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:background="#b9071204"
+            android:clickable="true"
+            android:fontFamily="casual"
+            android:text="GO"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_below="@id/linear_rtrw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="    Nama KK"
+                android:layout_weight="1"
+                android:paddingLeft="5dp"
+                android:layout_margin="5dp"
+                android:fontFamily="casual"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:text="   Nomor KK"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+    <GridView
+        android:id="@+id/gridView_listKK"
+        android:layout_below="@id/header_cari_kk"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:numColumns="1"
+        android:horizontalSpacing="15dp"
+        android:verticalSpacing="15dp"
+        android:gravity="center"
+        android:padding="15dp"
+        android:stretchMode="columnWidth">
+    </GridView>
+
+</RelativeLayout>

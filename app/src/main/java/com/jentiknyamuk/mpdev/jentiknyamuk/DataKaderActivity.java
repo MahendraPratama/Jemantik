@@ -1,0 +1,142 @@
+package com.jentiknyamuk.mpdev.jentiknyamuk;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class DataKaderActivity extends AppCompatActivity {
+    final ArrayList<HashMap<String, Object>> list = new ArrayList<>();
+    private GridView gridView;
+    private Toolbar toolbar;
+    final String url = "http://mpdev.000webhostapp.com/get_data_user.php";
+    private String nama, username, password, alamat, no_telp;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_data_kader);
+        toolbar = (Toolbar) findViewById(R.id.datakader_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Data Kader");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getJSON();
+    }
+
+    private void getJSON() {
+        final ProgressDialog loading;
+        loading = ProgressDialog.show(DataKaderActivity.this, "Fetching Data", "Wait...", false, false);
+        list.clear();
+        final StringRequest stringRequest = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        loading.dismiss();
+                        try {
+                            show(response);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        loading.dismiss();
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+        UserRequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    private void show(String response) {
+        try {
+            JSONArray result = new JSONArray(response);
+            for (int i = 0; i < result.length(); i++) {
+                JSONObject jo = result.getJSONObject(i);
+                nama = jo.getString("nama");
+                username = jo.getString("username");
+                password = jo.getString("password");
+                alamat = jo.getString("alamat");
+                no_telp = jo.getString("no_telp");
+                HashMap<String, Object> ListKader = new HashMap<>();
+                ListKader.put("nama", nama);
+                ListKader.put("username", username);
+                ListKader.put("password", password);
+                ListKader.put("alamat", alamat);
+                ListKader.put("no_telp", no_telp);
+                list.add(ListKader);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        gridView = (GridView) findViewById(R.id.gridView_dataKader);
+        gridView.setAdapter(new BaseAdapter() {
+            @Override
+            public int getCount() {
+                return list.size();
+            }
+
+            @Override
+            public Object getItem(int position) {
+                return list.get(position);
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return 0;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                LayoutInflater inflater = (LayoutInflater) DataKaderActivity.this.getSystemService(
+                        DataKaderActivity.this.LAYOUT_INFLATER_SERVICE);
+                View gridview;
+                gridview = inflater.inflate(R.layout.item_single_kader,null);
+                TextView _nm_KK = (TextView)gridview.findViewById(R.id.list_namaKader);
+                _nm_KK.setText((CharSequence) list.get(position).get("nama"));
+                return gridview;
+            }
+        });
+
+        gridView.setOnItemClickListener(new GridView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                Intent i = null;
+                i = new Intent(DataKaderActivity.this, TambahKaderActivity.class);
+                i.putExtra("nama", list.get(position).get("nama").toString());
+                i.putExtra("username",list.get(position).get("username").toString());
+                i.putExtra("password",list.get(position).get("password").toString());
+                i.putExtra("alamat",list.get(position).get("alamat").toString());
+                i.putExtra("no_telp",list.get(position).get("no_telp").toString());
+                startActivity(i);
+            }
+        });
+    }
+}

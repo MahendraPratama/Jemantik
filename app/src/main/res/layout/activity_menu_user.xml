@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jentiknyamuk.mpdev.jentiknyamuk.MenuUserActivity"
+    android:background="@drawable/bg_user"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/llTop"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/ic_jemantik_hijau" />
+
+    <LinearLayout
+        android:id="@+id/llTop"
+        android:layout_above="@id/llBtm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:weightSum="2">
+
+        <ImageButton
+            android:id="@+id/tambah_data_kk"
+            style="@style/button_menu_admin"
+            android:src="@drawable/ic_usr_tmbh_dt_kk"
+            android:scaleType="centerInside"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/input_data_pemantauan"
+            style="@style/button_menu_admin"
+            android:src="@drawable/ic_usr_inp_dt_pemantauan"
+            android:scaleType="centerInside"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/llBtm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageButton
+            android:id="@+id/lihat_peta_jentik"
+            style="@style/button_menu_admin"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_usr_lht_peta_jentik"
+            />
+
+        <ImageButton
+            android:id="@+id/btn_logout_user"
+            style="@style/button_menu_admin"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_usr_logout"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
