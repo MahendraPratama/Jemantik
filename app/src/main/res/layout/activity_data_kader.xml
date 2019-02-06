@@ -7,7 +7,9 @@
     tools:context="com.jentiknyamuk.mpdev.jentiknyamuk.DataKaderActivity">
 
     <include layout="@layout/app_bar_layout"
-        android:id="@+id/datakader_toolbar"/>
+        android:id="@+id/datakader_toolbar"
+
+        />
 
     <GridView
         android:id="@+id/gridView_dataKader"
