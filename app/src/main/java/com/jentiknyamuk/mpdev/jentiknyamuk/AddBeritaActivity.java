@@ -1,21 +1,28 @@
 package com.jentiknyamuk.mpdev.jentiknyamuk;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Random;
 
-public class AddBeritaActivity extends AppCompatActivity {
+public class AddBeritaActivity extends AppCompatActivity implements View.OnClickListener{
 private EditText judulberita, isiberita;
 private Button addimage, bagikan, cancelfoto;
 private ImageView fotoberita;
@@ -46,6 +53,7 @@ int PICK_IMAGE_REQUEST = 1;
                 addimage.setVisibility(View.VISIBLE);
             }
         });
+        bagikan.setOnClickListener(this);
     }
     private void showFileChooser()
     {
@@ -84,8 +92,80 @@ int PICK_IMAGE_REQUEST = 1;
             return "";
         }else {
             ByteArrayOutputStream localByteArrayOutputStream = new ByteArrayOutputStream();
-            paramBitmap.compress(Bitmap.CompressFormat.JPEG, 100, localByteArrayOutputStream);
-            return Base64.encodeToString(localByteArrayOutputStream.toByteArray(), 0);
+            paramBitmap.compress(Bitmap.CompressFormat.PNG, 100, localByteArrayOutputStream);
+            return Base64.encodeToString(localByteArrayOutputStream.toByteArray(), Base64.DEFAULT);
         }
+    }
+
+    private void postBerita(){
+        final String judul   = judulberita.getText().toString().trim();
+        final String isi  = isiberita.getText().toString().trim();
+
+        class postBerita extends AsyncTask<Void,Void,String> {
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(AddBeritaActivity.this
+                        ,"Posting Berita...","Wait...",false,false);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(AddBeritaActivity.this,s,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                HashMap<String,String> hashMap = new HashMap<>();
+
+                String generatedID = randomAlphaNumeric(7);
+
+                hashMap.put("id",generatedID);
+                hashMap.put("judul",judul);
+                hashMap.put("isi",isi);
+                hashMap.put("image",getStringImage(bitmap));
+
+                RequestHandler rh = new RequestHandler();
+
+                String s = rh.sendPostRequst("http://mpdev.000webhostapp.com/postBerita.php",hashMap);
+
+                Log.e("postreq",s);
+                return s;
+            }
+        }
+
+        postBerita po = new postBerita();
+        po.execute();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == bagikan){
+
+            if(judulberita.length()==0){
+                toast("Tulis Judul Berita dahulu");
+            }else if(isiberita.length()==0){
+                toast("Tulis Isi Berita dahulu");
+            }else
+            {
+                postBerita();
+            }
+        }
+
+    }
+    private void toast(String message){
+        Toast.makeText(AddBeritaActivity.this,message,Toast.LENGTH_LONG).show();
+    }
+    private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    public String randomAlphaNumeric(int count) {
+        StringBuilder builder = new StringBuilder();
+        while (count-- != 0) {
+            int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
+            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+        }
+        return builder.toString();
     }
 }

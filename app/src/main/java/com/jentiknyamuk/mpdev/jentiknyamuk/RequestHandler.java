@@ -33,7 +33,7 @@ public class RequestHandler {
         //menyimpan pesan dari server
         StringBuilder sb = new StringBuilder();
         try{
-            url = new URL (requestURL);
+            url = new URL(requestURL);
 
             HttpURLConnection conn  =(HttpURLConnection) url.openConnection();
 
