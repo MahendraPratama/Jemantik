@@ -51,6 +51,7 @@ int PICK_IMAGE_REQUEST = 1;
             public void onClick(View view) {
                 fotoberita.setImageBitmap(null);
                 addimage.setVisibility(View.VISIBLE);
+                cancelfoto.setVisibility(View.INVISIBLE);
             }
         });
         bagikan.setOnClickListener(this);

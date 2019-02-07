@@ -85,7 +85,7 @@
                     android:layout_below="@id/txtjdl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Jentik Nyamuk di Semarang"/>
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -109,7 +109,7 @@
                     android:layout_below="@id/txtisi"
                     android:inputType="text|textMultiLine"
                     android:gravity="top"
-                    android:text="Jentik Nyamuk di Semarang" />
+                    />
             </RelativeLayout>
         </LinearLayout>
 
