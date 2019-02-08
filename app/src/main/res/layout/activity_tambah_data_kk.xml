@@ -14,80 +14,143 @@
         android:layout_below="@id/tambahkk_toolbar"
         android:layout_above="@id/btn_simpan_data_kk">
         <LinearLayout
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/white_corner">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nomor KK"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/tambah_no_kk"
+                    style="@style/EditText_Tambah_KK"
+                    android:hint="Nomor KK"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/white_corner">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Kepala Keluarga"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/tambah_nama_kk"
+                    style="@style/EditText_Tambah_KK"
+                    android:hint="Nama Kepala Keluarga"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/white_corner">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Alamat"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/tambah_alamat_kk"
+                    style="@style/EditText_Tambah_KK"
+                    android:inputType="text"
+                    android:hint="Alamat"
+                    android:maxLines="3"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/white_corner">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kelurahan"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/tambah_kelurahan_kk"
+                    style="@style/EditText_Tambah_KK"
+                    android:inputType="text"
+                    android:hint="Kelurahan"
+                    android:maxLines="1"
+                    />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/tambah_no_kk"
-                style="@style/EditText_Tambah_KK"
-                android:hint="Nomor KK"
-                android:inputType="number"
-                android:maxLines="1"
-                />
-            <EditText
-                android:id="@+id/tambah_nama_kk"
-                android:layout_below="@id/tambah_no_kk"
-                style="@style/EditText_Tambah_KK"
-                android:hint="Nama Kepala Keluarga"
-                android:inputType="textPersonName"
-                android:maxLines="1"
-                />
-            <EditText
-                android:id="@+id/tambah_alamat_kk"
-                android:layout_below="@id/tambah_nama_kk"
-                style="@style/EditText_Tambah_KK"
-                android:inputType="text"
-                android:hint="Alamat"
-                android:maxLines="3"
-                />
-            <EditText
-                android:id="@+id/tambah_kelurahan_kk"
-                android:layout_below="@id/tambah_alamat_kk"
-                style="@style/EditText_Tambah_KK"
-                android:inputType="text"
-                android:hint="Kelurahan"
-                android:maxLines="1"
-                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tambah_kelurahan_kk"
-                style="@style/EditText_Tambah_KK"
                 android:weightSum="2"
                 android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/tambah_rt_kk"
-                    android:layout_height="match_parent"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:hint="RT"
-                    android:inputType="number"
-                    android:fontFamily="casual"
-                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    />
-                <EditText
-                    android:id="@+id/tambah_rw_kk"
-                    android:layout_height="match_parent"
+                    android:background="@drawable/white_corner">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="RT"
+                        android:padding="5dp"/>
+                    <EditText
+                        android:id="@+id/tambah_rt_kk"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="RT"
+                        android:inputType="number"
+                        android:fontFamily="casual"
+                        android:maxLines="1"
+                        />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:hint="RW"
-                    android:inputType="number"
-                    android:fontFamily="casual"
-                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    />
+                    android:background="@drawable/white_corner">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="RW"
+                        android:padding="5dp"/>
+                    <EditText
+                        android:id="@+id/tambah_rw_kk"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="RW"
+                        android:inputType="number"
+                        android:fontFamily="casual"
+                        android:maxLines="1"
+                        android:layout_weight="1"
+                        />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
     </ScrollView>
-
-
-
-
-
-
 
     <Button
         android:id="@+id/btn_simpan_data_kk"

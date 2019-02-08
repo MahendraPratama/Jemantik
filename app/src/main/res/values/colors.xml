@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#065302</color>
-    <color name="colorPrimaryDark">#083506</color>
+    <color name="colorPrimary">#023807</color>
+    <color name="colorPrimaryDark">#002003</color>
     <color name="colorAccent">#a9420f</color>
     <color name="white">#ebfae7</color>
     <color name="idp_radiogrup_inactive">#d9b37b</color>

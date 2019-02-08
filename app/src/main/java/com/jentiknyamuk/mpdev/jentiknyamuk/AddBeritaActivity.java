@@ -116,6 +116,9 @@ int PICK_IMAGE_REQUEST = 1;
                 super.onPostExecute(s);
                 loading.dismiss();
                 Toast.makeText(AddBeritaActivity.this,s,Toast.LENGTH_LONG).show();
+                Intent intentProfile = new Intent(AddBeritaActivity.this, MenuAdminActivity.class);
+                startActivity(intentProfile);
+                AddBeritaActivity.this.finish();
             }
 
             @Override

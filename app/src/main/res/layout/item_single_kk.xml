@@ -1,36 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:background="#d4094001"
-    android:weightSum="2"
+    android:layout_marginTop="5dp"
+    android:background="#ffffff"
     >
 
-    <TextView
-        android:id="@+id/list_namaKK"
-        android:layout_width="30pt"
-        android:maxWidth="30pt"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sumarno "
-        android:layout_weight="1"
-        android:paddingLeft="5dp"
-        android:layout_margin="5dp"
-        android:maxLines="1"
-        android:fontFamily="casual"
-        android:textColor="@color/white"
-        android:layout_marginLeft="10dp"
-        />
-    <TextView
-        android:id="@+id/list_noKK"
-        android:layout_width="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/list_namaKK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10pt"
+            android:textStyle="bold"
+            android:text="Sumarno Susuli Bubuy Yudoioio"
+            android:maxLines="1"
+            android:layout_weight="1"
+            android:fontFamily="casual"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:id="@+id/list_noKK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="casual"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="#000"
+            android:text="300892019283"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:layout_margin="5dp"
-        android:layout_weight="1"
-        android:textColor="@color/white"
-        android:text="300892019283"
-        />
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/list_kel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="casual"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000"
+            android:text="TAWANGSARI"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RT :"
+            android:fontFamily="casual"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000"
+            />
+        <TextView
+            android:id="@+id/list_rt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:fontFamily="casual"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/ RW :"
+            android:fontFamily="casual"
+            android:layout_marginLeft="5dp"
+            android:textColor="#000"
+            />
+        <TextView
+            android:id="@+id/list_rw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:fontFamily="casual"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000"
+            />
+    </LinearLayout>
+
 </LinearLayout>

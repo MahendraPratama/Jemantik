@@ -1,25 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:background="#d4094001"
-    android:weightSum="2"
+    android:layout_marginTop="5dp"
+    android:background="#fff"
     >
 
     <TextView
         android:id="@+id/list_namaKader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sumarno "
-        android:layout_weight="2"
-        android:paddingLeft="5dp"
-        android:layout_margin="5dp"
+        android:text="Sumarno Susilo bbang Syuyudono"
+        android:layout_gravity="center_vertical"
+        android:textSize="10pt"
+        android:textStyle="bold"
+        android:layout_weight="1"
         android:maxLines="1"
         android:fontFamily="casual"
-        android:textColor="@color/white"
+        android:textColor="#000"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp">
+        <Button
+            android:layout_toLeftOf="@id/btnDelKader"
+            android:id="@+id/btnEdtKader"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="edit"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/btn_outline_black"
+            android:fontFamily="casual"
+            />
+        <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/btnDelKader"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="delete"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/btn_outline_black"
+            android:fontFamily="casual"
+            />
+
+    </RelativeLayout>
 </LinearLayout>

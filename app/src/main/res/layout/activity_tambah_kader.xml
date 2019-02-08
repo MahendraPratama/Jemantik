@@ -8,44 +8,115 @@
     <include layout="@layout/app_bar_layout"
         android:id="@+id/tambahkader_toolbar"/>
 
-    <EditText
-        android:id="@+id/tambah_username"
-        android:layout_marginTop="100dp"
-        style="@style/EditText_input"
-        android:hint="username" />
-    <EditText
-        android:layout_below="@id/tambah_username"
-        android:id="@+id/tambah_password"
-        style="@style/EditText_input"
-        android:hint="password"
-        android:password="true"/>
-    <EditText
-        style="@style/EditText_input"
-        android:id="@+id/tambah_nama"
-        android:layout_below="@id/tambah_password"
-        android:hint="Nama Petugas"/>
-    <EditText
-        style="@style/EditText_input"
-        android:id="@+id/tambah_alamat"
-        android:layout_below="@id/tambah_nama"
-        android:hint="Alamat"/>
-    <EditText
-        style="@style/EditText_input"
-        android:id="@+id/tambah_notelp"
-        android:layout_below="@id/tambah_alamat"
-        android:hint="No. HP"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tambahkader_toolbar"
+        android:layout_above="@id/btn_simpan_data_kk">
+        <LinearLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/white_corner">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Username"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/tambah_username"
+                    style="@style/EditText_Tambah_KK"
+                    android:hint="username" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/white_corner">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/tambah_password"
+                    style="@style/EditText_Tambah_KK"
+                    android:hint="password"
+                    android:password="true"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/white_corner">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Petugas"
+                    android:padding="5dp"/>
+                <EditText
+                    style="@style/EditText_Tambah_KK"
+                    android:id="@+id/tambah_nama"
+                    android:hint="Nama Petugas"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/white_corner">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nomor HP"
+                    android:padding="5dp"/>
+                <EditText
+                    style="@style/EditText_Tambah_KK"
+                    android:id="@+id/tambah_notelp"
+                    android:hint="No. HP"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/white_corner">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Alamat"
+                    android:padding="5dp"/>
+                <EditText
+                    style="@style/EditText_Tambah_KK"
+                    android:id="@+id/tambah_alamat"
+                    android:layout_height="150dp"
+                    android:hint="Alamat"
+                    android:gravity="top"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
     <Button
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:textColor="@color/white"
         android:id="@+id/button_tambah_kader"
         android:layout_height="50dp"
-        android:layout_below="@id/tambah_notelp"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentBottom="true"
         android:text="Simpan Data"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:fontFamily="casual"/>
-
-
 </RelativeLayout>

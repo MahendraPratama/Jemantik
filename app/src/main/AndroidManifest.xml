@@ -56,7 +56,8 @@
         <activity
             android:name=".DataKaderActivity"
             android:parentActivityName=".MenuAdminActivity" />
-        <activity android:name=".AddBeritaActivity"></activity>
+        <activity android:name=".AddBeritaActivity" />
+        <activity android:name=".ContinueReadingBeritaActivity"></activity>
     </application>
 
 </manifest>

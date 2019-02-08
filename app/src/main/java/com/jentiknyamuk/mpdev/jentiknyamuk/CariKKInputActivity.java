@@ -172,6 +172,10 @@ private String JSON_STRING, no_KK, nm_KK, almt, kel, rt, rw;
                     _nm_KK.setText((CharSequence) list.get(position).get("nama_kk"));
                     TextView _no_KK = (TextView)gridview.findViewById(R.id.list_noKK);
                     _no_KK.setText((CharSequence) list.get(position).get("no_kk"));
+                    TextView _rt = (TextView)gridview.findViewById(R.id.list_rt);
+                    _rt.setText((CharSequence) list.get(position).get("rt"));
+                    TextView _rw = (TextView)gridview.findViewById(R.id.list_rw);
+                    _rw.setText((CharSequence) list.get(position).get("rw"));
                     return gridview;
                 }
                 else
@@ -179,6 +183,8 @@ private String JSON_STRING, no_KK, nm_KK, almt, kel, rt, rw;
                     gridview = inflater.inflate(R.layout.item_single_kk_admin,null);
                     TextView _nm_KK = (TextView)gridview.findViewById(R.id.list_namaKK);
                     _nm_KK.setText((CharSequence) list.get(position).get("nama_kk"));
+                    TextView _no_KK = (TextView)gridview.findViewById(R.id.list_noKK);
+                    _no_KK.setText((CharSequence) list.get(position).get("no_kk"));
                     Button btnEdit = (Button) gridview.findViewById(R.id.btnEdtKK);
                     Button btnDel = (Button) gridview.findViewById(R.id.btnDelKK);
                     final int fPos = position;

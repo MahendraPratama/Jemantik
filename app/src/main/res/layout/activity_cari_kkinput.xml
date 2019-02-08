@@ -32,7 +32,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginRight="60dp"
-            android:weightSum="2">
+            android:weightSum="2"
+            android:layout_marginBottom="10dp">
             <EditText
                 android:id="@+id/cari_dari_rt"
                 android:background="#b9103903"
@@ -52,7 +53,7 @@
                 android:layout_height="match_parent"
                 android:hint="RW"
                 android:fontFamily="casual"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:textColorHint="#999"
                 android:paddingLeft="15dp"/>
         </LinearLayout>
@@ -70,38 +71,10 @@
             android:text="GO"
             android:textColor="@color/white"
             android:textStyle="bold" />
-        <LinearLayout
-            android:layout_below="@id/linear_rtrw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="2"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorPrimaryDark">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="    Nama KK"
-                android:layout_weight="1"
-                android:paddingLeft="5dp"
-                android:layout_margin="5dp"
-                android:fontFamily="casual"
-                android:textColor="@color/white"
-                android:layout_marginLeft="10dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="casual"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:text="   Nomor KK"
-                />
-        </LinearLayout>
 
     </RelativeLayout>
     <GridView
+        android:background="#c6c6c6"
         android:id="@+id/gridView_listKK"
         android:layout_below="@id/header_cari_kk"
         android:layout_width="fill_parent"

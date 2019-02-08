@@ -8,19 +8,17 @@
 
     <include layout="@layout/app_bar_layout"
         android:id="@+id/datakader_toolbar"
-
         />
-
     <GridView
         android:id="@+id/gridView_dataKader"
+        android:background="#afafaf"
         android:layout_below="@id/datakader_toolbar"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:numColumns="1"
-        android:horizontalSpacing="10dp"
+        android:horizontalSpacing="2.5dp"
         android:verticalSpacing="10dp"
         android:gravity="center"
-        android:padding="15dp"
         android:stretchMode="columnWidth">
     </GridView>
 </RelativeLayout>
