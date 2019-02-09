@@ -92,21 +92,22 @@ public class HomeFragment extends Fragment {
 
     private void show() {
         try {
-            JSONArray result = new JSONArray(JSON_STRING);
-            for (int i = 0; i < result.length(); i++) {
-                JSONObject jo = result.getJSONObject(i);
-                String idberita = jo.getString("id_berita");
-                String judulberita = jo.getString("judul_berita");
-                String pathgambar = jo.getString("path_gambar");
-                String isiberita = jo.getString("isi_berita");
+            if(list.isEmpty()){
+                JSONArray result = new JSONArray(JSON_STRING);
+                for (int i = 0; i < result.length(); i++) {
+                    JSONObject jo = result.getJSONObject(i);
+                    String idberita = jo.getString("id_berita");
+                    String judulberita = jo.getString("judul_berita");
+                    String pathgambar = jo.getString("path_gambar");
+                    String isiberita = jo.getString("isi_berita");
 
-                HashMap<String, Object> ItemBerita = new HashMap<>();
-                ItemBerita.put("id_berita", idberita);
-                ItemBerita.put("judul_berita", judulberita);
-                ItemBerita.put("path_gambar", pathgambar);
-                ItemBerita.put("isi_berita", isiberita);
-                list.add(ItemBerita);
-
+                    HashMap<String, Object> ItemBerita = new HashMap<>();
+                    ItemBerita.put("id_berita", idberita);
+                    ItemBerita.put("judul_berita", judulberita);
+                    ItemBerita.put("path_gambar", pathgambar);
+                    ItemBerita.put("isi_berita", isiberita);
+                    list.add(ItemBerita);
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();

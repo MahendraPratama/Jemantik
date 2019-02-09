@@ -27,23 +27,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="6dp">
-        <Button
+        <ImageButton
             android:layout_toLeftOf="@id/btnDelKader"
             android:id="@+id/btnEdtKader"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="edit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_box_edit"
             android:layout_marginRight="5dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/btn_outline_black"
             android:fontFamily="casual"
+            android:tooltipText="edit"
             />
-        <Button
+
+        <ImageButton
             android:layout_alignParentRight="true"
             android:id="@+id/btnDelKader"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="delete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_delete"
+            android:scaleType="fitCenter"
             android:layout_marginRight="5dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/btn_outline_black"

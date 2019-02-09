@@ -1,6 +1,8 @@
 package com.jentiknyamuk.mpdev.jentiknyamuk;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +45,6 @@ public class DataKaderActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.datakader_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Data Kader");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getJSON();
     }
 
@@ -121,22 +124,83 @@ public class DataKaderActivity extends AppCompatActivity {
                 gridview = inflater.inflate(R.layout.item_single_kader,null);
                 TextView _nm_KK = (TextView)gridview.findViewById(R.id.list_namaKader);
                 _nm_KK.setText((CharSequence) list.get(position).get("nama"));
+                ImageButton edt = (ImageButton)gridview.findViewById(R.id.btnEdtKader);
+                ImageButton del = (ImageButton)gridview.findViewById(R.id.btnDelKader);
+                final int fPos = position;
+                edt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = null;
+                        i = new Intent(DataKaderActivity.this, TambahKaderActivity.class);
+                        i.putExtra("nama", list.get(fPos).get("nama").toString());
+                        i.putExtra("username",list.get(fPos).get("username").toString());
+                        i.putExtra("password",list.get(fPos).get("password").toString());
+                        i.putExtra("alamat",list.get(fPos).get("alamat").toString());
+                        i.putExtra("no_telp",list.get(fPos).get("no_telp").toString());
+                        startActivity(i);
+                    }
+                });
+                del.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String us,nm;
+                        us = list.get(fPos).get("username").toString();
+                        nm = list.get(fPos).get("nama").toString();
+                        deleteKader(us,nm);
+                    }
+                });
                 return gridview;
             }
         });
-
-        gridView.setOnItemClickListener(new GridView.OnItemClickListener() {
+    }
+    public void deleteKader(final String username, String namaKader){
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Intent i = null;
-                i = new Intent(DataKaderActivity.this, TambahKaderActivity.class);
-                i.putExtra("nama", list.get(position).get("nama").toString());
-                i.putExtra("username",list.get(position).get("username").toString());
-                i.putExtra("password",list.get(position).get("password").toString());
-                i.putExtra("alamat",list.get(position).get("alamat").toString());
-                i.putExtra("no_telp",list.get(position).get("no_telp").toString());
-                startActivity(i);
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        final String url = "https://mpdev.000webhostapp.com/delKader.php";
+                        final StringRequest stringRequest = new StringRequest(
+                                Request.Method.POST,
+                                url,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        try {
+                                            JSONObject jsonObject = new JSONObject(response);
+                                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                }) {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Map<String, String> params = new HashMap<>();
+                                params.put("no_kk", username);
+
+                                return params;
+                            }
+                        };
+                        UserRequestHandler.getInstance(DataKaderActivity.this).addToRequestQueue(stringRequest);
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
             }
-        });
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(DataKaderActivity.this);
+        builder.setMessage("Are you sure want to delete "+namaKader+" ?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
     }
 }

@@ -44,7 +44,6 @@ private Toolbar toolbar;
         toolbar = (Toolbar) findViewById(R.id.tambahkader_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Tambah Kader");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if(getIntent().hasExtra("nama")){
             btn_add_kader.setText("Update Data");

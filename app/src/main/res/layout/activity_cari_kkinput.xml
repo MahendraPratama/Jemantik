@@ -7,17 +7,17 @@
     tools:context="com.jentiknyamuk.mpdev.jentiknyamuk.CariKKInputActivity">
 
     <RelativeLayout
+        android:paddingLeft="5dp"
         android:id="@+id/header_cari_kk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:layout_alignParentTop="true"
-        >
+        android:layout_alignParentTop="true">
 
         <EditText
             android:id="@+id/cari_dari_kelurahan"
             style="@style/EditText_Tambah_KK"
-            android:background="#b9103903"
+            android:background="#b90e2606"
             android:layout_marginTop="10dp"
             android:textColor="@color/white"
             android:hint="Cari Kelurahan.."
@@ -33,10 +33,11 @@
             android:orientation="horizontal"
             android:layout_marginRight="60dp"
             android:weightSum="2"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp">
             <EditText
                 android:id="@+id/cari_dari_rt"
-                android:background="#b9103903"
+                android:background="#b90e2606"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:hint="RT"
@@ -48,7 +49,7 @@
             <EditText
                 android:id="@+id/cari_dari_rw"
                 android:layout_marginLeft="5dp"
-                android:background="#b9103903"
+                android:background="#b90e2606"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:hint="RW"
@@ -80,8 +81,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:numColumns="1"
-        android:horizontalSpacing="15dp"
-        android:verticalSpacing="15dp"
+        android:horizontalSpacing="6dp"
         android:gravity="center"
         android:padding="15dp"
         android:stretchMode="columnWidth">
