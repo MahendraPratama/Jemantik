@@ -53,6 +53,7 @@ private Toolbar toolbar;
             alamat.setText(getIntent().getStringExtra("alamat"));
             notelp.setText(getIntent().getStringExtra("no_telp"));
             getSupportActionBar().setTitle("Edit Kader");
+            username.setEnabled(false);
         }
 
         btn_add_kader.setOnClickListener(new View.OnClickListener() {

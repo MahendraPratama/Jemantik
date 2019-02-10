@@ -169,7 +169,7 @@ public class DataKaderActivity extends AppCompatActivity {
                                         try {
                                             JSONObject jsonObject = new JSONObject(response);
                                             Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
-
+                                            getJSON();
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
@@ -184,7 +184,7 @@ public class DataKaderActivity extends AppCompatActivity {
                             @Override
                             protected Map<String, String> getParams() throws AuthFailureError {
                                 Map<String, String> params = new HashMap<>();
-                                params.put("no_kk", username);
+                                params.put("us", username);
 
                                 return params;
                             }
