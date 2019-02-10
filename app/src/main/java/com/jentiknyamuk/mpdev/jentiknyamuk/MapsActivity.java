@@ -3,6 +3,7 @@ package com.jentiknyamuk.mpdev.jentiknyamuk;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -47,10 +48,9 @@ import java.util.Map;
 
 public class MapsActivity extends Fragment implements
         OnMapReadyCallback,
-        GoogleMap.OnPolylineClickListener,
         GoogleMap.OnPolygonClickListener {
-    final ArrayList<HashMap<String, Object>> listDataMap = new ArrayList<>();
-    final ArrayList<HashMap<String, Object>> listDataJentik = new ArrayList<>();
+    ArrayList<HashMap<String, Object>> listDataMap = new ArrayList<>();
+    ArrayList<HashMap<String, Object>> listDataJentik = new ArrayList<>();
     private String[] array_nm_kel = {"BONGSARI","NGEMPLAK","BOJONGSALAMAN","CABEAN"
                                         ,"GISIKDRONO","KALIBANTENG KIDUL","KALIBANTENG KULON"
                                         , "KARANGAYU","KEMBANGARUM","KRAPYAK","KROBOKAN"
@@ -69,6 +69,12 @@ public class MapsActivity extends Fragment implements
     private MapView mapFragment;
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,11 +89,13 @@ public class MapsActivity extends Fragment implements
         btnClose = (Button) mMainView.findViewById(R.id.btn_close);
         popup.setVisibility(View.INVISIBLE);
         get_data_ABJ();
-        get_data_LatLng();
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mapFragment = (MapView) mMainView.findViewById(R.id.map);
         mapFragment.onCreate(savedInstanceState);
         mapFragment.onResume();
+
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());
         } catch (Exception e) {
@@ -160,6 +168,7 @@ public class MapsActivity extends Fragment implements
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        get_data_LatLng();
                     }
                 },
                 new Response.ErrorListener() {
@@ -241,7 +250,8 @@ public class MapsActivity extends Fragment implements
     }
     @Override
     public void onPolygonClick(Polygon polygon) {
-        int nPolygon = Integer.parseInt(polygon.getId().substring(2,polygon.getId().length())) ;
+        int poly = Integer.parseInt(polygon.getId().substring(2,polygon.getId().length()));
+        int nPolygon = (poly < 15) ? poly : (poly % 16) ;
         Log.d("kelurahan = ", polygon.getId()) ;
 
         for (int n = 0; n < array_nm_kel.length; n++){
@@ -286,7 +296,13 @@ public class MapsActivity extends Fragment implements
     }
 
     @Override
-    public void onPolylineClick(Polyline polyline) {
-
+    public void onDestroyView() {
+        super.onDestroyView();
+        arrayPolygon.removeAll(arrayPolygon);
+        itr.removeAll(itr);
+        MapKelurahan.removeAll(MapKelurahan);
+        mapFragment.removeAllViews();
+        listDataMap.removeAll(listDataMap);
+        listDataJentik.removeAll(listDataJentik);
     }
 }

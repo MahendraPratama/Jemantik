@@ -35,18 +35,6 @@ public class LoginActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
 
-        if (SharedPrefManager.getInstance(this).isLoggedIn()){
-            finish();
-            if(SharedPrefManager.getInstance(this).getKodeLevel() == 1){
-                startActivity(new Intent(this, MenuAdminActivity.class));
-            }else
-            {
-                startActivity(new Intent(this, MenuUserActivity.class));
-            }
-            finish();
-            return; // return untuk tidak mengeksekusi line code dibawah kalau user sudah login
-        }
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                                         jsonObject.getString("nama"),
                                         jsonObject.getString("alamat"),
                                         jsonObject.getString("no_telp"),
+                                        jsonObject.getString("password"),
                                         jsonObject.getInt("kode_level")
                                 );
 

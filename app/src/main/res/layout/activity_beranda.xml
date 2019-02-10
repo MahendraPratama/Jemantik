@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.jentiknyamuk.mpdev.jentiknyamuk.BerandaActivity"
+    android:background="@drawable/bg_user">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#dc16361c"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/header_admin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="casual"
+                android:padding="6dp"
+                android:text="Berita Jemantik"
+                android:textSize="8pt"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:textColor="@color/white" />
+            <ImageButton
+                android:id="@+id/btn_login"
+                android:layout_margin="5dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_account"
+                android:background="@drawable/btn_round_white"
+                android:scaleType="fitCenter"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/dateview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Minggu, 10 Feb 2019"
+                android:textColor="#fff"
+                android:fontFamily="casual"
+                android:textSize="8pt"
+                android:layout_margin="5dp"
+                android:layout_gravity="center_vertical"
+                />
+            <DigitalClock
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:padding="5dp"
+                android:fontFamily="casual"
+                android:textSize="12pt"/>
+        </LinearLayout>
+    </LinearLayout>
+    <GridView
+        android:id="@+id/gridView_listBeritaBeranda"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:numColumns="1"
+        android:horizontalSpacing="15dp"
+        android:verticalSpacing="15dp"
+        android:gravity="center"
+        android:padding="15dp"
+        android:stretchMode="columnWidth">
+    </GridView>
+</LinearLayout>

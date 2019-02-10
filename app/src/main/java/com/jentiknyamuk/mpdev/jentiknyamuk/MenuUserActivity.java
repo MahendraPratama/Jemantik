@@ -1,52 +1,119 @@
 package com.jentiknyamuk.mpdev.jentiknyamuk;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MenuUserActivity extends AppCompatActivity {
-private ImageButton lihatMap, inputData, logout, tambahKK;
+    private ViewPager mPager;
+    private MenuAdminActivity.SectionPageAdapter mSectPageAdapter;
+    private TabLayout mTabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_user);
 
-        lihatMap = (ImageButton) findViewById(R.id.lihat_peta_jentik);
-        inputData = (ImageButton) findViewById(R.id.input_data_pemantauan);
-        logout = (ImageButton) findViewById(R.id.btn_logout_user);
-        tambahKK = (ImageButton) findViewById(R.id.tambah_data_kk);
+        mPager = (ViewPager) findViewById(R.id.tab_pager);
+        SampleFragmentPagerAdapter pagerAdapter =
+                new SampleFragmentPagerAdapter(getSupportFragmentManager());
 
-        tambahKK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MenuUserActivity.this, TambahDataKKActivity.class));
-            }
-        });
+        mPager.setAdapter(pagerAdapter);
+        mTabLayout = (TabLayout) findViewById(R.id.main_tabs);
+        mTabLayout.setupWithViewPager(mPager);
 
-        inputData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MenuUserActivity.this, CariKKInputActivity.class));
-            }
-        });
+        for (int i = 0; i < mTabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = mTabLayout.getTabAt(i);
+            tab.setCustomView(pagerAdapter.getTabView(i));
+        }
+    }
+    public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
+        private String tabTitles[] = new String[] { "Home","Map", "Pemantauan", "Setting" };
+        private int tabImage[] = new int[] {R.drawable.ic_home, R.drawable.ic_mapjentik
+                , R.drawable.ic_datapantau, R.drawable.ic_setting};
 
-        lihatMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MenuUserActivity.this, MapsActivity.class));
-            }
-        });
+        public SampleFragmentPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPrefManager.getInstance(getApplicationContext()).logout();
-                startActivity(new Intent(MenuUserActivity.this, LoginActivity.class));
-                finish();
+        public View getTabView(int position){
+            final View v = LayoutInflater.from(getApplication()).inflate(R.layout.tab_header_custom_layout, null);
+            TextView tv = (TextView) v.findViewById(R.id.tab_title_customLayout);
+            ImageView iv = (ImageView) v.findViewById(R.id.tab_image_customLayout);
+            tv.setText(tabTitles[position]);
+            iv.setImageResource(tabImage[position]);
+
+            return v;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position){
+                case 0 :
+                    HomeFragment homeFragment = new HomeFragment();
+                    return homeFragment;
+                case 1 :
+                    MapsActivity mapsActivity = new MapsActivity();
+                    return mapsActivity;
+                case 2 :
+                    DataKKFragment dataKKFragment = new DataKKFragment();
+                    return dataKKFragment;
+                case 3 :
+                    AccountFragment accountFragment = new AccountFragment();
+                    return accountFragment;
+                default:
+                    return null;
             }
-        });
+        }
+
+        @Override
+        public int getCount() {
+            return 4;
+        }
+    }
+
+
+    class SectionPageAdapter extends FragmentPagerAdapter{
+        public SectionPageAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position){
+                case 0 :
+                    HomeFragment homeFragment = new HomeFragment();
+                    return homeFragment;
+                case 1 :
+                    MapsActivity mapsActivity = new MapsActivity();
+                    return mapsActivity;
+                case 2 :
+                    KaderFragment kaderFragment = new KaderFragment();
+                    return kaderFragment;
+                case 3 :
+                    DataKKFragment dataKKFragment = new DataKKFragment();
+                    return dataKKFragment;
+                case 4 :
+                    AccountFragment accountFragment = new AccountFragment();
+                    return accountFragment;
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 5;
+        }
     }
 }

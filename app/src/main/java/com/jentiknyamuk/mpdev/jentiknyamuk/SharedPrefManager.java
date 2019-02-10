@@ -18,6 +18,7 @@ public class SharedPrefManager {
     private static final String KEY_NO_TELP        = "no_telp";
     private static final String KEY_KODE_LEVEL   = "kode_level";
     private static final String KEY_USERNAME     = "username";
+    private static final String KEY_PASSWORD     = "password";
 
 
 
@@ -32,7 +33,7 @@ public class SharedPrefManager {
         return mInstance;
     }
 
-    public boolean userLogin(String username, String nama, String alamat, String no_telp, int kode_level){
+    public boolean userLogin(String username, String nama, String alamat, String no_telp, String password, int kode_level){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor     = sharedPreferences.edit();
 
@@ -40,6 +41,7 @@ public class SharedPrefManager {
         editor.putString(KEY_NAMA, nama);
         editor.putString(KEY_ALAMAT, alamat);
         editor.putString(KEY_NO_TELP, no_telp);
+        editor.putString(KEY_PASSWORD, password);
         editor.putInt(KEY_KODE_LEVEL, kode_level);
 
 
@@ -48,14 +50,14 @@ public class SharedPrefManager {
         return true;
     }
 
-    public boolean update(String nama, String alamat, String no_telp, int kode_level){
+    public boolean update(String nama, String alamat, String no_telp, String password){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor     = sharedPreferences.edit();
 
         editor.putString(KEY_NAMA, nama);
         editor.putString(KEY_ALAMAT, alamat);
         editor.putString(KEY_NO_TELP, no_telp);
-        editor.putInt(KEY_KODE_LEVEL, kode_level);
+        editor.putString(KEY_PASSWORD, password);
 
         editor.commit();
 
@@ -85,6 +87,22 @@ public class SharedPrefManager {
     public String getUsername(){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_USERNAME,null);
+    }
+    public String getPassword(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_PASSWORD,null);
+    }
+    public String getAlamat(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_ALAMAT,null);
+    }
+    public String getNoTelp(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_NO_TELP,null);
+    }
+    public String getNama(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_NAMA,null);
     }
 
     public int getKodeLevel(){

@@ -41,8 +41,9 @@ private TabLayout mTabLayout;
     }
 
     public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
-        private String tabTitles[] = new String[] { "Home","Map Jentik", "Kader", "Logout" };
-        private int tabImage[] = new int[] {R.drawable.ic_tambahkader, R.drawable.ic_mapjentik, R.drawable.ic_datakk, R.drawable.ic_logout};
+        private String tabTitles[] = new String[] { "Home","Map", "Kader", "Data KK", "Setting" };
+        private int tabImage[] = new int[] {R.drawable.ic_home, R.drawable.ic_mapjentik
+                , R.drawable.ic_dtkader, R.drawable.ic_datakk, R.drawable.ic_setting};
 
         public SampleFragmentPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -70,6 +71,12 @@ private TabLayout mTabLayout;
                 case 2 :
                     KaderFragment kaderFragment = new KaderFragment();
                     return kaderFragment;
+                case 3 :
+                    DataKKFragment dataKKFragment = new DataKKFragment();
+                    return dataKKFragment;
+                case 4 :
+                    AccountFragment accountFragment = new AccountFragment();
+                    return accountFragment;
                 default:
                     return null;
             }
@@ -77,7 +84,7 @@ private TabLayout mTabLayout;
 
         @Override
         public int getCount() {
-            return 3;
+            return 5;
         }
     }
 
@@ -99,6 +106,12 @@ private TabLayout mTabLayout;
                 case 2 :
                     KaderFragment kaderFragment = new KaderFragment();
                     return kaderFragment;
+                case 3 :
+                    DataKKFragment dataKKFragment = new DataKKFragment();
+                    return dataKKFragment;
+                case 4 :
+                    AccountFragment accountFragment = new AccountFragment();
+                    return accountFragment;
                 default:
                     return null;
             }
@@ -106,7 +119,7 @@ private TabLayout mTabLayout;
 
         @Override
         public int getCount() {
-            return 4;
+            return 5;
         }
     }
 }

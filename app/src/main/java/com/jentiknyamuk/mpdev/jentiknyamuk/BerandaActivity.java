@@ -2,16 +2,10 @@ package com.jentiknyamuk.mpdev.jentiknyamuk;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.fido.fido2.api.common.RequestOptions;
-import com.google.android.gms.fido.fido2.api.common.TokenBindingIdValue;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,53 +28,48 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-
-public class HomeFragment extends Fragment {
+public class BerandaActivity extends AppCompatActivity {
     private View mMainView;
     String JSON_STRING;
-    private ImageButton addberita,refresh;
+    private ImageButton btnlogin;
+    private TextView dt;
     final ArrayList<HashMap<String, Object>> list = new ArrayList<>();
     GridView gridView;
-    TextView dt;
-
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getJSON(getActivity());
-    }
+        setContentView(R.layout.activity_beranda);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mMainView =  inflater.inflate(R.layout.fragment_home, container, false);
-        //setContentView(R.layout.activity_data_kader);
 
-        gridView = (GridView) mMainView.findViewById(R.id.gridView_listBerita);
-        addberita = (ImageButton) mMainView.findViewById(R.id.btn_addberita);
-        refresh = (ImageButton) mMainView.findViewById(R.id.btn_refreshberita);
-        dt = (TextView) mMainView.findViewById(R.id.dateview);
-        addberita.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(),AddBeritaActivity.class));
+        gridView = (GridView) findViewById(R.id.gridView_listBeritaBeranda);
+        btnlogin = (ImageButton) findViewById(R.id.btn_login);
+        dt = (TextView) findViewById(R.id.dateview);
+
+        if (SharedPrefManager.getInstance(this).isLoggedIn()){
+            finish();
+            if(SharedPrefManager.getInstance(this).getKodeLevel() == 1){
+                startActivity(new Intent(this, MenuAdminActivity.class));
+            }else
+            {
+                startActivity(new Intent(this, MenuUserActivity.class));
             }
-        });
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getJSON(getActivity());
-            }
-        });
+            finish();
+            return; // return untuk tidak mengeksekusi line code dibawah kalau user sudah login
+        }
+
         Date today = Calendar.getInstance().getTime();//getting date
         SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");//formating according to my need
         String date = formatter.format(today);
         dt.setText(date);
-        if(JSON_STRING!=null){
-            show(getActivity());
-        }
 
-        return mMainView;
+        getJSON(BerandaActivity.this);
+        btnlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(BerandaActivity.this, LoginActivity.class));
+                finish();
+            }
+        });
     }
 
     public void getJSON(final Activity activity) {
@@ -102,6 +89,7 @@ public class HomeFragment extends Fragment {
                 loading.dismiss();
                 JSON_STRING = s;
                 show(activity);
+
             }
 
             @Override
@@ -184,7 +172,6 @@ public class HomeFragment extends Fragment {
                 i.putExtra("gambar", path);
                 i.putExtra("judul", list.get(position).get("judul_berita").toString());
                 i.putExtra("isi", list.get(position).get("isi_berita").toString());
-                getActivity().finish();
 
                 startActivity(i);
 

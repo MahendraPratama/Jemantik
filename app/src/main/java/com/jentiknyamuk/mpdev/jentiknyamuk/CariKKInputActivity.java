@@ -77,6 +77,7 @@ private String JSON_STRING, no_KK, nm_KK, almt, kel, rt, rw;
                 getJSON(crKel,crRT,crRW);
             }
         });
+
         getJSON("","","");
     }
 

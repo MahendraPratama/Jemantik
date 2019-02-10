@@ -67,6 +67,7 @@ public class TambahDataKKActivity extends AppCompatActivity {
     private Boolean mRequestingLocationUpdates;
     private LocationCallback mLocationCallback;
     private LocationSettingsRequest mLocationSettingsRequest;
+    String url = "http://mpdev.000webhostapp.com/insert_data_kk.php";
 
     private void init(){
         mFusedLocation = LocationServices.getFusedLocationProviderClient(TambahDataKKActivity.this);
@@ -275,7 +276,7 @@ public class TambahDataKKActivity extends AppCompatActivity {
         progressDialog.setMessage("Menyimpan Data");
         progressDialog.show();
 
-        final String url = "http://mpdev.000webhostapp.com/insert_data_kk.php";
+
         final StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 url,

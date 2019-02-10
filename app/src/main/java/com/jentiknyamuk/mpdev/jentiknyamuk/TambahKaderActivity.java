@@ -28,6 +28,7 @@ private EditText username, password, nama, alamat, notelp;
 private Button btn_add_kader;
 private ProgressDialog progressDialog;
 private Toolbar toolbar;
+String url = "http://mpdev.000webhostapp.com/add_user.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,7 @@ private Toolbar toolbar;
             notelp.setText(getIntent().getStringExtra("no_telp"));
             getSupportActionBar().setTitle("Edit Kader");
             username.setEnabled(false);
+            url = "https://mpdev.000webhostapp.com/update_user.php";
         }
 
         btn_add_kader.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +76,6 @@ private Toolbar toolbar;
         progressDialog.setMessage("Menyimpan Data");
         progressDialog.show();
 
-        final String url = "http://mpdev.000webhostapp.com/add_user.php";
         final StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -110,6 +111,10 @@ private Toolbar toolbar;
                 return params;
             }
         };
+        if(url.contains("update")){
+            SharedPrefManager.getInstance(getApplicationContext())
+                    .update(name,almt,noHP,pwd);
+        }
         UserRequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 }

@@ -45,7 +45,7 @@ public class InputHasilPantauActivity extends AppCompatActivity {
     private RadioGroup bak,kolam,kaleng,tempayan,lain;
     private TextView t_bak, t_kolam, t_kaleng, t_tempayan, t_lain;
     private ProgressDialog progressDialog;
-    private double latitude, longitude;
+
     private String nomor_kk, nama_kk;
 
     @Override
@@ -165,12 +165,11 @@ public class InputHasilPantauActivity extends AppCompatActivity {
                 if(JmlKontainer == 0){
                     Toast.makeText(InputHasilPantauActivity.this
                     ,"Pilih minimal satu kontainer",Toast.LENGTH_LONG).show();
-                }
-                Log.i("ko","kol : "+jkolam+"bak"+jbak+"tempy"+jtempayan+"kal"+jkaleng+"lain"+jlain);
-                Log.i("rb>>", ""+JmlKontainer);
-                Log.i("rb>>", ""+JmlPositif);
-
-                insert_data(tglPantau.getText().toString()
+                }else if(tglPantau.getText().toString().contains("tanggal")){
+                    Toast.makeText(InputHasilPantauActivity.this
+                            ,"Masukkan tanggal terlebih dahulu",Toast.LENGTH_LONG).show();
+                }else{
+                    insert_data(tglPantau.getText().toString()
                             ,jbak
                             ,jkolam
                             ,jkaleng
@@ -178,6 +177,10 @@ public class InputHasilPantauActivity extends AppCompatActivity {
                             ,jlain
                             ,JmlKontainer
                             ,JmlPositif);
+                }
+//                Log.i("ko","kol : "+jkolam+"bak"+jbak+"tempy"+jtempayan+"kal"+jkaleng+"lain"+jlain);
+//                Log.i("rb>>", ""+JmlKontainer);
+//                Log.i("rb>>", ""+JmlPositif);
 
 
             }
