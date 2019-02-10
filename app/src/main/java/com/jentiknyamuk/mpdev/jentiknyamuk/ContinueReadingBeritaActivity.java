@@ -8,10 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.uncopt.android.widget.text.justify.JustifiedTextView;
 
 public class ContinueReadingBeritaActivity extends AppCompatActivity {
-private String judul,isi,gambar;
-private TextView detJdl,detIsi;
+private String judul,isi,gambar,tgl;
+private TextView detJdl, tglberita;
+private JustifiedTextView detIsi;
 private ImageView gb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +24,14 @@ private ImageView gb;
         judul   = o.getStringExtra("judul");
         isi     = o.getStringExtra("isi");
         gambar  = o.getStringExtra("gambar");
+        tgl  = o.getStringExtra("tgl");
 
-        Log.d("jdl",judul);
-        detIsi = (TextView) findViewById(R.id.detail_isiBerita);
+        tglberita = (TextView) findViewById(R.id.tglberita);
+        detIsi = (JustifiedTextView) findViewById(R.id.detail_isiBerita);
         detJdl = (TextView) findViewById(R.id.detail_judulberita);
         gb = (ImageView) findViewById(R.id.detail_gambarberita);
 
+        tglberita.setText("Posted by: Admin, "+tgl);
         detJdl.setText(judul);
         detIsi.setText(isi);
         Glide.with(ContinueReadingBeritaActivity.this)

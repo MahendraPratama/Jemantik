@@ -9,15 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.TimeoutException;
 
 
 public class DataKKFragment extends Fragment {
     private View mMainView;
     String JSON_STRING;
     private ImageButton add,view;
+    private TextView textView;
     final ArrayList<HashMap<String, Object>> list = new ArrayList<>();
     GridView gridView;
     @Override
@@ -28,9 +31,12 @@ public class DataKKFragment extends Fragment {
 
         add = (ImageButton) mMainView.findViewById(R.id.btn_addkk);
         view = (ImageButton) mMainView.findViewById(R.id.btn_datakk);
+        textView = (TextView) mMainView.findViewById(R.id.textwelcome);
 
         if(SharedPrefManager.getInstance(getContext()).getKodeLevel() == 2){
-            view.setBackgroundResource(R.drawable.ic_listdata_hslpantau);
+            view.setImageResource(R.drawable.ic_listdata_hslpantau);
+            String nama = SharedPrefManager.getInstance(getContext()).getNama();
+            textView.setText("Halo "+nama);
         }
         add.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -20,11 +20,13 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.fido.fido2.api.common.RequestOptions;
 import com.google.android.gms.fido.fido2.api.common.TokenBindingIdValue;
+import com.google.android.gms.vision.text.Line;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,6 +46,7 @@ public class HomeFragment extends Fragment {
     final ArrayList<HashMap<String, Object>> list = new ArrayList<>();
     GridView gridView;
     TextView dt;
+    LinearLayout menuberita;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,15 +62,23 @@ public class HomeFragment extends Fragment {
         //setContentView(R.layout.activity_data_kader);
 
         gridView = (GridView) mMainView.findViewById(R.id.gridView_listBerita);
-        addberita = (ImageButton) mMainView.findViewById(R.id.btn_addberita);
+
         refresh = (ImageButton) mMainView.findViewById(R.id.btn_refreshberita);
         dt = (TextView) mMainView.findViewById(R.id.dateview);
-        addberita.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(),AddBeritaActivity.class));
-            }
-        });
+        menuberita = (LinearLayout) mMainView.findViewById(R.id.menu_add_berita);
+        if(SharedPrefManager.getInstance(getContext()).getKodeLevel() == 2){
+            menuberita.setVisibility(View.INVISIBLE);
+        }else
+        {
+            addberita = (ImageButton) mMainView.findViewById(R.id.btn_addberita);
+            addberita.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(getActivity(),AddBeritaActivity.class));
+                }
+            });
+        }
+
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,12 +138,14 @@ public class HomeFragment extends Fragment {
                     String judulberita = jo.getString("judul_berita");
                     String pathgambar = jo.getString("path_gambar");
                     String isiberita = jo.getString("isi_berita");
+                    String tglberita = jo.getString("tanggal_berita");
 
                     HashMap<String, Object> ItemBerita = new HashMap<>();
                     ItemBerita.put("id_berita", idberita);
                     ItemBerita.put("judul_berita", judulberita);
                     ItemBerita.put("path_gambar", pathgambar);
                     ItemBerita.put("isi_berita", isiberita);
+                    ItemBerita.put("tanggal_berita", tglberita);
                     list.add(ItemBerita);
                 }
             }
@@ -184,7 +197,7 @@ public class HomeFragment extends Fragment {
                 i.putExtra("gambar", path);
                 i.putExtra("judul", list.get(position).get("judul_berita").toString());
                 i.putExtra("isi", list.get(position).get("isi_berita").toString());
-                getActivity().finish();
+                i.putExtra("tgl", list.get(position).get("tanggal_berita").toString());
 
                 startActivity(i);
 

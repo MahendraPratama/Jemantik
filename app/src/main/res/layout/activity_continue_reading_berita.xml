@@ -33,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="casual"
+            android:id="@+id/tglberita"
             android:layout_below="@id/detail_judulberita"
             android:layout_marginRight="10dp"
             android:layout_gravity="bottom"
@@ -44,16 +45,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
+        <com.uncopt.android.widget.text.justify.JustifiedTextView
             android:id="@+id/detail_isiBerita"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
-            android:text="SLPLP
-lplplpl
-lplplplp
-lplplpl"
+            android:text="SLPLP lplplpl lpl pl plp asdasdasd asd asda sdasdas dasdasdasda sdasd as dasdas kau aku aksn naku andjkjan kjjhsd lplplpl"
             />
     </ScrollView>
 </LinearLayout>

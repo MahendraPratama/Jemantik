@@ -177,6 +177,8 @@ private String JSON_STRING, no_KK, nm_KK, almt, kel, rt, rw;
                     _rt.setText((CharSequence) list.get(position).get("rt"));
                     TextView _rw = (TextView)gridview.findViewById(R.id.list_rw);
                     _rw.setText((CharSequence) list.get(position).get("rw"));
+                    TextView _kel = (TextView)gridview.findViewById(R.id.list_kel);
+                    _kel.setText((CharSequence) list.get(position).get("kelurahan"));
                     return gridview;
                 }
                 else

@@ -71,7 +71,7 @@
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/white_corner">
                 <TextView
@@ -84,7 +84,9 @@
                     android:id="@+id/judulBerita"
                     android:layout_below="@id/txtjdl"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:inputType="text|textMultiLine"
+                    android:layout_height="100dp"
+                    android:gravity="top"
                     />
             </RelativeLayout>
 

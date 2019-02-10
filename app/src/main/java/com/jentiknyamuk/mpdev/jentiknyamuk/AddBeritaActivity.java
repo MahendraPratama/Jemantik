@@ -8,12 +8,14 @@ import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Scroller;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -55,6 +57,9 @@ int PICK_IMAGE_REQUEST = 1;
             }
         });
         bagikan.setOnClickListener(this);
+        isiberita.setScroller(new Scroller(AddBeritaActivity.this));
+        isiberita.setVerticalScrollBarEnabled(true);
+        isiberita.setMovementMethod(new ScrollingMovementMethod());
     }
     private void showFileChooser()
     {

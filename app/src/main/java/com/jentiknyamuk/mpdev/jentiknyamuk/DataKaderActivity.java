@@ -138,6 +138,7 @@ public class DataKaderActivity extends AppCompatActivity {
                         i.putExtra("alamat",list.get(fPos).get("alamat").toString());
                         i.putExtra("no_telp",list.get(fPos).get("no_telp").toString());
                         startActivity(i);
+                        finish();
                     }
                 });
                 del.setOnClickListener(new View.OnClickListener() {
