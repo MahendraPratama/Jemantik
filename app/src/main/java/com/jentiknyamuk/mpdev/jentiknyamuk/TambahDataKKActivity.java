@@ -148,10 +148,10 @@ public class TambahDataKKActivity extends AppCompatActivity {
                             boolean n = jsonObject.getBoolean("error");
                             if(n==false){
                                 Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-                                cleanInputForm();
+                                startActivity(new Intent(TambahDataKKActivity.this, CariKKInputActivity.class));
+                                finish();
                             }
 
-                            //finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

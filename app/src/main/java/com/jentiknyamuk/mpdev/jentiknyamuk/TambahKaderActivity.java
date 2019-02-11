@@ -86,7 +86,7 @@ String url = "http://mpdev.000webhostapp.com/add_user.php";
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(TambahKaderActivity.this,DataKaderActivity.class));
+                            startActivity(new Intent(TambahKaderActivity.this, DataKaderActivity.class));
                             finish();
                         } catch (JSONException e) {
                             e.printStackTrace();

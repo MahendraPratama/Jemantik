@@ -204,6 +204,7 @@ private String JSON_STRING, no_KK, nm_KK, almt, kel, rt, rw;
                             i.putExtra("rt",list.get(fPos).get("rt").toString());
                             i.putExtra("rw",list.get(fPos).get("rw").toString());
                             startActivity(i);
+                            finish();
                         }
                     });
                     btnDel.setOnClickListener(new View.OnClickListener() {

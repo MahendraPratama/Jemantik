@@ -205,7 +205,12 @@ public class MapsFragment extends Fragment implements
                         return MapKelurahan.get(finalN).iterator();
                     }
                 });
-                indeksJentik = (double) listDataJentik.get(n).get("abj");
+                try{
+                    indeksJentik = (double) listDataJentik.get(n).get("abj");
+                }catch (IndexOutOfBoundsException e){
+                    Toast.makeText(getContext(),"indeks gagal didapatkan",Toast.LENGTH_SHORT).show();
+                }
+
                 arrayPolygon.add(n,mMap.addPolygon(new PolygonOptions()
                         .clickable(true)
                         .addAll(
