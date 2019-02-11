@@ -168,6 +168,7 @@ private String JSON_STRING, no_KK, nm_KK, almt, kel, rt, rw;
                         CariKKInputActivity.this.LAYOUT_INFLATER_SERVICE);
                 View gridview;
                 if(SharedPrefManager.getInstance(getApplicationContext()).getKodeLevel() == 2){
+                    // jika pengguna adalah petugas/kader
                     gridview = inflater.inflate(R.layout.item_single_kk,null);
                     TextView _nm_KK = (TextView)gridview.findViewById(R.id.list_namaKK);
                     _nm_KK.setText((CharSequence) list.get(position).get("nama_kk"));
@@ -181,7 +182,7 @@ private String JSON_STRING, no_KK, nm_KK, almt, kel, rt, rw;
                     _kel.setText((CharSequence) list.get(position).get("kelurahan"));
                     return gridview;
                 }
-                else
+                else // jika pengguna adalah admin
                 {
                     gridview = inflater.inflate(R.layout.item_single_kk_admin,null);
                     TextView _nm_KK = (TextView)gridview.findViewById(R.id.list_namaKK);

@@ -69,46 +69,6 @@ public class TambahDataKKActivity extends AppCompatActivity {
     private LocationSettingsRequest mLocationSettingsRequest;
     String url = "http://mpdev.000webhostapp.com/insert_data_kk.php";
 
-    private void init(){
-        mFusedLocation = LocationServices.getFusedLocationProviderClient(TambahDataKKActivity.this);
-        mSettingsClient = LocationServices.getSettingsClient(this);
-        mLocationRequest = LocationRequest.create();
-        mLocationRequest.setInterval(10000); // 10 detik
-        mLocationRequest.setFastestInterval(5000);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-
-        mLocationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                super.onLocationResult(locationResult);
-                // location is received
-                mCurrentLocation = locationResult.getLastLocation();
-                if(mCurrentLocation != null){
-                    //Toast.makeText(getApplicationContext(), "Started location updates!", Toast.LENGTH_SHORT).show();
-                    longitude = mCurrentLocation.getLongitude();
-                    latitude = mCurrentLocation.getLatitude();
-                    statusLoc.setText("Lat : "+latitude+" Lng : "+longitude);
-                }
-
-            }
-        };
-        mRequestingLocationUpdates = false;
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
-        builder.addLocationRequest(mLocationRequest);
-        mLocationSettingsRequest = builder.build();
-    }
-
-    public void stopLocationUpdates() {
-        // Removing location updates
-        mFusedLocation
-                .removeLocationUpdates(mLocationCallback)
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(getApplicationContext(), "Location updates stopped!", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,38 +93,10 @@ public class TambahDataKKActivity extends AppCompatActivity {
             rt.setText(getIntent().getStringExtra("rt"));
             rw.setText(getIntent().getStringExtra("rw"));
             save.setText("Update");
+            nomor_kk.setEnabled(false);
+            url = "http://mpdev.000webhostapp.com/update_kk.php";
         }
-        //init();
 
-
-//        getLoc.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (ActivityCompat.checkSelfPermission(TambahDataKKActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-//                        == PackageManager.PERMISSION_GRANTED
-//                        && ActivityCompat.checkSelfPermission(TambahDataKKActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
-//                        == PackageManager.PERMISSION_GRANTED) {
-//                    Log.d("Cek","cek Permission");
-//                    //mFusedLocation.requestLocationUpdates(mLocationRequest, mLocationCallback,null /*Looper.myLooper()*/);
-//                    startLocationUpdates();
-////                    mFusedLocation.getLastLocation().addOnSuccessListener(TambahDataKKActivity.this, new OnSuccessListener<Location>() {
-////                        @Override
-////                        public void onSuccess(Location location) {
-////                            if (location != null) {
-////                                latitude = location.getLatitude();
-////                                longitude = location.getLongitude();
-////                                Log.d("Cek Lat", ""+latitude);
-////                                statusLoc.setText("Lat : "+latitude+" Lng : "+longitude);
-////                            }
-////                        }
-////                    });
-//                }
-//                else
-//                {
-//                    checkLocationPermission();
-//                }
-//            }
-//        });
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -197,79 +129,6 @@ public class TambahDataKKActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //stopLocationUpdates();
-    }
-
-
-
-    private void startLocationUpdates() {
-        mSettingsClient
-                .checkLocationSettings(mLocationSettingsRequest)
-                .addOnSuccessListener(TambahDataKKActivity.this, new OnSuccessListener<LocationSettingsResponse>() {
-                    @SuppressLint("MissingPermission")
-                    @Override
-                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
-                        //Log.i(TAG, "All location settings are satisfied.");
-
-                        //Toast.makeText(getApplicationContext(), "Started location updates!", Toast.LENGTH_SHORT).show();
-
-                        //noinspection MissingPermission
-                        mFusedLocation.requestLocationUpdates(mLocationRequest,
-                                mLocationCallback, Looper.myLooper());
-
-
-                        //updateLocationUI();
-                    }
-                })
-                .addOnFailureListener(TambahDataKKActivity.this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        int statusCode = ((ApiException) e).getStatusCode();
-                        switch (statusCode) {
-                            case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                                //Log.i(TAG, "Location settings are not satisfied. Attempting to upgrade " +
-                                //        "location settings ");
-                                try {
-                                    // Show the dialog by calling startResolutionForResult(), and check the
-                                    // result in onActivityResult().
-                                    ResolvableApiException rae = (ResolvableApiException) e;
-                                    rae.startResolutionForResult(TambahDataKKActivity.this, 100);
-                                } catch (IntentSender.SendIntentException sie) {
-                                    //Log.i(TAG, "PendingIntent unable to execute request.");
-                                }
-                                break;
-                            case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                                String errorMessage = "Location settings are inadequate, and cannot be " +
-                                        "fixed here. Fix in Settings.";
-                                //Log.e(TAG, errorMessage);
-
-                                Toast.makeText(TambahDataKKActivity.this, errorMessage, Toast.LENGTH_LONG).show();
-                        }
-
-                        //updateLocationUI();
-                    }
-                });
-    }
-
-//    private LocationCallback mLocationCallback = new LocationCallback() {
-//        @Override
-//        public void onLocationResult(LocationResult locationResult) {
-//            List<Location> locationList = locationResult.getLocations();
-//            if (locationList.size() > 0) {
-//                //The last location in the list is the newest
-//                Location location = locationList.get(locationList.size() - 1);
-//                latitude = location.getLatitude();
-//                longitude =location.getLongitude();
-//                statusLoc.setText("Lat : "+latitude+" Lng : "+longitude);
-//                Log.i("MapsActivity", "Location: " + location.getLatitude() + " " + location.getLongitude());
-//                mCurrentLocation = location;
-//
-//            }
-//        }
-//    };
     private void insert_data(final String i_noKK, final String i_namaKK, final String i_alamatKK, final String i_kelurahanKK, final String i_rtKK, final String i_rwKK) {
 
 
@@ -321,75 +180,6 @@ public class TambahDataKKActivity extends AppCompatActivity {
             }
         };
         UserRequestHandler.getInstance(this).addToRequestQueue(stringRequest);
-    }
-
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-    private void checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    android.Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                new AlertDialog.Builder(this)
-                        .setTitle("Location Permission Needed")
-                        .setMessage("This app needs the Location permission, please accept to use location functionality")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //Prompt the user once explanation has been shown
-                                ActivityCompat.requestPermissions(TambahDataKKActivity.this,
-                                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                                        MY_PERMISSIONS_REQUEST_LOCATION );
-                            }
-                        })
-                        .create()
-                        .show();
-
-
-            } else {
-                // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(this,
-                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION );
-            }
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay! Do the
-                    // location-related task you need to do.
-                    if (ContextCompat.checkSelfPermission(this,
-                            android.Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
-
-                        mFusedLocation.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
-                    }
-
-                } else {
-
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                    Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
-                }
-                return;
-            }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
-        }
     }
 
     private void cleanInputForm(){

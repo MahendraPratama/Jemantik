@@ -13,8 +13,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.SupportMapFragment;
-
 public class MenuAdminActivity extends AppCompatActivity {
 private ImageButton tambahUser, dataUser, dataHasilPantau, logout, dataKK;
 private ViewPager mPager;
@@ -66,7 +64,7 @@ private TabLayout mTabLayout;
                     HomeFragment homeFragment = new HomeFragment();
                     return homeFragment;
                 case 1 :
-                    MapsActivity mapsActivity = new MapsActivity();
+                    MapsFragment mapsActivity = new MapsFragment();
                     return mapsActivity;
                 case 2 :
                     KaderFragment kaderFragment = new KaderFragment();
@@ -101,7 +99,7 @@ private TabLayout mTabLayout;
                     HomeFragment homeFragment = new HomeFragment();
                     return homeFragment;
                 case 1 :
-                    MapsActivity mapsActivity = new MapsActivity();
+                    MapsFragment mapsActivity = new MapsFragment();
                     return mapsActivity;
                 case 2 :
                     KaderFragment kaderFragment = new KaderFragment();

@@ -96,7 +96,7 @@ public class BerandaActivity extends AppCompatActivity {
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
                 String s = rh.sendGetRequest("https://mpdev.000webhostapp.com/getBerita.php");
-                //Log.d("==",":"+s);
+
                 return s;
 
             }
@@ -174,7 +174,6 @@ public class BerandaActivity extends AppCompatActivity {
                 i.putExtra("isi", list.get(position).get("isi_berita").toString());
 
                 startActivity(i);
-
             }
         });
 

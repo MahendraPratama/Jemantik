@@ -24,6 +24,10 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * Activity post berita baru, hanya digunakan oleh admin
+ */
+
 public class AddBeritaActivity extends AppCompatActivity implements View.OnClickListener{
 private EditText judulberita, isiberita;
 private Button addimage, bagikan, cancelfoto;
@@ -35,19 +39,25 @@ int PICK_IMAGE_REQUEST = 1;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_berita);
 
+
         judulberita = (EditText) findViewById(R.id.judulBerita);
         isiberita = (EditText) findViewById(R.id.isiBerita);
         fotoberita = (ImageView) findViewById(R.id.view_image);
         cancelfoto = (Button) findViewById(R.id.btn_delImage);
         addimage = (Button) findViewById(R.id.btn_addimage);
         bagikan = (Button) findViewById(R.id.btn_submitBerita);
+
+        //hide button close pada saat awal create
         cancelfoto.setVisibility(View.INVISIBLE);
+
+        //menjalankan fungsi showFileChooser
         addimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showFileChooser();
             }
         });
+
         cancelfoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,10 +67,9 @@ int PICK_IMAGE_REQUEST = 1;
             }
         });
         bagikan.setOnClickListener(this);
-        isiberita.setScroller(new Scroller(AddBeritaActivity.this));
-        isiberita.setVerticalScrollBarEnabled(true);
-        isiberita.setMovementMethod(new ScrollingMovementMethod());
     }
+
+    // fungsi untuk menampilkan layar untuk memilih gambar
     private void showFileChooser()
     {
         Intent localIntent = new Intent();
@@ -69,6 +78,7 @@ int PICK_IMAGE_REQUEST = 1;
         startActivityForResult(Intent.createChooser(localIntent, "Select Picture"), this.PICK_IMAGE_REQUEST);
     }
 
+    // fungsi untuk menampung hasil dari memilih gambar
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
@@ -78,7 +88,9 @@ int PICK_IMAGE_REQUEST = 1;
         }
         try
         {
+            // menampung gambar yg telah dipilih ke dalam variable bitmap
             this.bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), localUri);
+            // memasukkan gambar yg dipilih ke imageview
             fotoberita.setImageBitmap(this.bitmap);
             fotoberita.setScaleType(ImageView.ScaleType.CENTER_CROP);
             addimage.setVisibility(View.INVISIBLE);
@@ -92,6 +104,7 @@ int PICK_IMAGE_REQUEST = 1;
         }
     }
 
+    // fungsi untuk konversi bitmap menjadi string (agar bisa diupload ke server)
     public String getStringImage(Bitmap paramBitmap)
     {
         if (paramBitmap == null){
@@ -99,10 +112,12 @@ int PICK_IMAGE_REQUEST = 1;
         }else {
             ByteArrayOutputStream localByteArrayOutputStream = new ByteArrayOutputStream();
             paramBitmap.compress(Bitmap.CompressFormat.PNG, 100, localByteArrayOutputStream);
+            // mengembalikan gambar dalam bentuk string yg telah di encode enggunakan Base64 encode
             return Base64.encodeToString(localByteArrayOutputStream.toByteArray(), Base64.DEFAULT);
         }
     }
 
+    // fungsi untuk post berita
     private void postBerita(){
         final String judul   = judulberita.getText().toString().trim();
         final String isi  = isiberita.getText().toString().trim();
@@ -120,7 +135,8 @@ int PICK_IMAGE_REQUEST = 1;
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(AddBeritaActivity.this,s,Toast.LENGTH_LONG).show();
+                // response messagge dr server ditampilkan ke layar
+                toast(s);
                 Intent intentProfile = new Intent(AddBeritaActivity.this, MenuAdminActivity.class);
                 startActivity(intentProfile);
                 AddBeritaActivity.this.finish();
@@ -128,20 +144,21 @@ int PICK_IMAGE_REQUEST = 1;
 
             @Override
             protected String doInBackground(Void... params) {
-                HashMap<String,String> hashMap = new HashMap<>();
-
                 String generatedID = randomAlphaNumeric(7);
 
+                HashMap<String,String> hashMap = new HashMap<>();
+                // menampung parameter yang akan dikirimkan kedalam hashmap
                 hashMap.put("id",generatedID);
                 hashMap.put("judul",judul);
                 hashMap.put("isi",isi);
                 hashMap.put("image",getStringImage(bitmap));
 
+
                 RequestHandler rh = new RequestHandler();
-
+                //mengirimkan request ke url dengan post parameter
                 String s = rh.sendPostRequst("http://mpdev.000webhostapp.com/postBerita.php",hashMap);
-
-                Log.e("postreq",s);
+                //s adalah string messagge yg didapatkan dari response pada server
+                //kemudian dikembalikan ke onPostExecute
                 return s;
             }
         }
@@ -153,7 +170,6 @@ int PICK_IMAGE_REQUEST = 1;
     @Override
     public void onClick(View view) {
         if(view == bagikan){
-
             if(judulberita.length()==0){
                 toast("Tulis Judul Berita dahulu");
             }else if(isiberita.length()==0){
@@ -163,11 +179,12 @@ int PICK_IMAGE_REQUEST = 1;
                 postBerita();
             }
         }
-
     }
     private void toast(String message){
         Toast.makeText(AddBeritaActivity.this,message,Toast.LENGTH_LONG).show();
     }
+
+    // fungsi untuk membuat id dari string secara random
     private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     public String randomAlphaNumeric(int count) {
         StringBuilder builder = new StringBuilder();

@@ -10,8 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+/**
+ * Fragment Menu Setting, digunakan pada admin dan petugas
+ */
 
 public class AccountFragment extends Fragment {
+
     public View mMainView;
     private LinearLayout profil, logout;
     @Override
@@ -22,6 +26,7 @@ public class AccountFragment extends Fragment {
         profil = (LinearLayout) mMainView.findViewById(R.id.menu_profil);
         logout = (LinearLayout) mMainView.findViewById(R.id.menu_logout);
         final SharedPrefManager sharedPrefManager =  SharedPrefManager.getInstance(getContext());
+
         profil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

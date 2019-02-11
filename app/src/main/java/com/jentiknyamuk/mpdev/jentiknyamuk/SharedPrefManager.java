@@ -1,11 +1,8 @@
 package com.jentiknyamuk.mpdev.jentiknyamuk;
 
-        import android.content.Context;
+import android.content.Context;
         import android.content.SharedPreferences;
 
-/**
- * Created by bima on 25/05/17.
- */
 
 //Store User data
 public class SharedPrefManager {
@@ -109,20 +106,5 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getInt(KEY_KODE_LEVEL,0);
     }
-
-//    public String getUserTeam(){
-//        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-//        return sharedPreferences.getString(KEY_USER_TEAM,null);
-//    }
-//
-//    public String getUserEmail(){
-//        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-//        return sharedPreferences.getString(KEY_USER_EMAIL,null);
-//    }
-//
-//    public Integer getUserId(){
-//        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-//        return sharedPreferences.getInt(KEY_USER_ID,0);
-//    }
 
 }
